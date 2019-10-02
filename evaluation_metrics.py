@@ -9,13 +9,14 @@ def get_onehot(fields, classes):
 def get_confusion(df_test, classes, k, truth, predictions):
     df_test["truth"] = df_test[truth].apply(set,axis =1).apply(lambda a: {x for x in a if x==x})
     df_test["predictions"] = df_test[predictions].apply(set, axis=1).apply(lambda a: {x for x in a if x==x})
-
+    print("compute diffecence sets")
     for i in range(k):
         df_test["truth_%i" %i] = df_test.apply(lambda x: x["truth"] - x["predictions"],
                                            axis =1).apply(list).str[i].dropna()
         df_test["predictions_%i" %i] = df_test.apply(lambda x: x["predictions"] - x["truth"],
                                            axis =1).apply(list).str[i].dropna()
 
+    print("compute intersectiosn")
     for i in range(k):
         df_test["matches_%i" %i] = df_test.apply(lambda x: x["predictions"] & x["truth"],
                                            axis =1).apply(list).str[i].dropna()
@@ -24,6 +25,7 @@ def get_confusion(df_test, classes, k, truth, predictions):
     truth_nomatch = ["truth_%i" %i for i in range(k)]
     pred_nomatch = ["predictions_%i"%i for i in range(k)]
 
+    print("compute onehot vectors")
     onehots_match = df_test.apply(lambda x: get_onehot(x[truth_match], classes), axis=1).fillna(0)
     onehots_nomatch_truth = df_test.apply(lambda x: get_onehot(x[truth_nomatch], classes), axis=1).fillna(0)
     onehots_nomatch_pred = df_test.apply(lambda x: get_onehot(x[pred_nomatch], classes), axis=1).fillna(0)
