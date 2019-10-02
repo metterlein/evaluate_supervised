@@ -20,7 +20,7 @@ $\{\tilde{T}_m^{(i)}\}_{q=1,..M1} = \{T_m^{(i)}\}_{m=1,..M}\setminus \{P_m^{(i)}
 
 $\{\tilde{P}_m^{(i)}\}_{p=1,..M2} =\{P_m^{(i)}\}_{m=1,..M} \setminus \{T_m^{(i)}\}_{m=1,..M}$
 
-$tilde{P}_m^{(i)}_{p=1,..M2} =\sum_{i=1}^N \sum_{m=1}^M \chi{1}\{T_m^{(i)}=k,P_m^{(i)}=k\} $
+$\tilde{P}_m^{(i)}_{p=1,..M2} =\sum_{i=1}^N \sum_{m=1}^M \chi{1}\{T_m^{(i)}=k,P_m^{(i)}=k\} $
 
 Eventually we count all events of the ground truth that were not captured in predictions, which results in
 
