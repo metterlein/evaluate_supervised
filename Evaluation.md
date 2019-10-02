@@ -27,15 +27,11 @@ $\\{ \tilde{P_m}^{(i)} \\} = \\{ P_m^{(i)}\\} \setminus \\{T_m^{(i)}\\}$
 
 Eventually we count all events of the ground truth that were not captured in predictions, which results in
 
-$C_{kl} =$
-
-$\sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2}$
+$C_{kl} = \sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2}$
 
 $\frac{1}{M1}$
 
-$\chi{1}\{\tilde{T_{m1}}^{(i)}$
-
-$=k,\tilde{P}_{m2}^{(i)}=l\} $
+$\chi{1}\\{\tilde{T_{m1}}^{(i)} =k,\tilde{P}_{m2}^{(i)}=l\\} $
 
 Once we have computed a multi-class - multi-label confusion matrix the classification report is straight forward.
 
