@@ -17,7 +17,7 @@ For the off-diagonal we take only the difference sets into account. If truth for
 $T^i$ = {rice_dish} and $P^i$ = {soup} for the off-daigonal. Formally we do the following transformation:
 
 \begin{align}
-\{ \tilde{T_m}^{(i)} \}_{m=1,..,M1}  
+\\{ \tilde{T_m}^{(i)} \\}_{m=1,..,M1}  = \\{T_m^{(i)}\\}_{m=1,..M} 
 \end{align}
 
 
