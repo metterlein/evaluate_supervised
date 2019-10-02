@@ -19,17 +19,14 @@ $T^i$ = {rice_dish} and $P^i$ = {soup} for the off-daigonal. Formally we do th
 $
 \\{ \tilde{T_m}^{(i)} \\}  = \\{T_m^{(i)}\\} \setminus \\{P_m^{(i)}\\}
 $
+
 and 
-
-
 
 $\\{ \tilde{P_m}^{(i)} \\} = \\{ P_m^{(i)}\\} \setminus \\{T_m^{(i)}\\}$
 
 Eventually we count all events of the ground truth that were not captured in predictions, which results in
 
-$C_{kl} = \sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2}$
-
-$\frac{1}{M1} \chi{1}\\{\tilde{T_{m1}}^{(i)} =k,\tilde{P}_{m2}^{(i)}=l\\} $
+$C_{kl} = \sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2} \frac{1}{M1} \chi{1}\\{\tilde{T_{m1}}^{(i)} =k,\tilde{P}_{m2}^{(i)}=l\\} $
 
 Once we have computed a multi-class - multi-label confusion matrix the classification report is straight forward.
 
