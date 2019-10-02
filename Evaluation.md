@@ -20,7 +20,7 @@ $\{ \tilde{T_m}^{(i)} \}_{m=1,..,M1}= \{T_m^{(i)}\}_{m=1,..M}\setminus \{P_m^{(i
 
 $\{ \tilde{P_m}^{(i)} \}_{m=1,..,M2}  = $
 
-$\{ P_m^{(i)}\}_{m=1,..,M} \setminus \{T_m^{(i)}\}_{m=1,..,M}$
+$\{ P_m^{(i)}\}_{m=1,..,M}\setminus\{T_m^{(i)}\}_{m=1,..,M}$
 
 Eventually we count all events of the ground truth that were not captured in predictions, which results in
 
