@@ -18,10 +18,11 @@ $T^i$ = {rice_dish} and $P^i$ = {soup} for the off-daigonal. Formally we do th
 
 \begin{align}
 \\{ \tilde{T_m}^{(i)} \\}_{m=1,..,M1} 
-
 \end{align}
 
+\begin{align}
 = \\{T_m^{(i)}\\}_{m=1,..M} 
+\end{align}
 
 $\setminus \{P_m^{(i)}\}_{m=1,..M}$
 
