@@ -31,7 +31,11 @@ $C_{kl} =$
 
 $\sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2}$
 
-$\frac{1}{M1}\chi{1}\{\tilde{T}_{m1}^{(i)}=k,\tilde{P}_{m2}^{(i)}=l\} $
+$\frac{1}{M1}$
+
+$\chi{1}\{\tilde{T_{m1}}^{(i)}$
+
+$=k,\tilde{P}_{m2}^{(i)}=l\} $
 
 Once we have computed a multi-class - multi-label confusion matrix the classification report is straight forward.
 
