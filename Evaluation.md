@@ -17,28 +17,21 @@ For the off-diagonal we take only the difference sets into account. If truth for
 $T^i$ = {rice_dish} and $P^i$ = {soup} for the off-daigonal. Formally we do the following transformation:
 
 $
-\\{ \tilde{T_m}^{(i)} \\} = = \\{T_m^{(i)}\\} \setminus \\{P_m^{(i)}\\}
+\\{ \tilde{T_m}^{(i)} \\}  = \\{T_m^{(i)}\\} \setminus \\{P_m^{(i)}\\}
 $
-
-$
-= \\{T_m^{(i)}\\} \setminus \{P_m^{(i)}\}
-$
-
-$\setminus \{P_m^{(i)}\}_{m=1,..M}$
+and 
 
 
 
-
-$\\{ \tilde{P_m}^{(i)} \\}_{m=1,..,M2} $ =
-
-$\\{ P_m^{(i)}\\}_{m=1,..,M}\setminus $ 
- 
-$\\{T_m^{(i)}\\}_{m=1,..,M}$
+$\\{ \tilde{P_m}^{(i)} \\} = \\{ P_m^{(i)}\\} \setminus \\{T_m^{(i)}\\}$
 
 Eventually we count all events of the ground truth that were not captured in predictions, which results in
 
-$C_{kl} =\sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2}
-\frac{1}{M1}\chi{1}\{\tilde{T}_{m1}^{(i)}=k,\tilde{P}_{m2}^{(i)}=l\} $
+$C_{kl} =$
+
+$\sum_{i=1}^N \sum_{m1=1}^{M1} \sum_{m2=1}^{M2}$
+
+$\frac{1}{M1}\chi{1}\{\tilde{T}_{m1}^{(i)}=k,\tilde{P}_{m2}^{(i)}=l\} $
 
 Once we have computed a multi-class - multi-label confusion matrix the classification report is straight forward.
 
