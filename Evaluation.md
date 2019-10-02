@@ -19,10 +19,10 @@ $T^i$ = {rice_dish} and $P^i$ = {soup} for the off-daigonal. Formally we do th
 $\{ \tilde{T_m}^{(i)} \}_{m=1,..,M1}= \{T_m^{(i)}\}_{m=1,..M}\setminus \{P_m^{(i)}\}_{m=1,..M}$ 
 
 $\\{ \tilde{P_m}^{(i)} \\}_{m=1,..,M2} $ =
-$\\{ P_m^{(i)}\\}_{m=1,..,M}\setminus $ 
 
+$\\{ P_m^{(i)}\\}_{m=1,..,M}\setminus $ 
  
-$\\{ P_m^{(i)}\\}_{m=1,..,M}\setminus \\{T_m^{(i)}\\}_{m=1,..,M}$
+$\\{T_m^{(i)}\\}_{m=1,..,M}$
 
 Eventually we count all events of the ground truth that were not captured in predictions, which results in
 
