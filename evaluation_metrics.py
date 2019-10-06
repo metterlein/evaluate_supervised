@@ -16,7 +16,7 @@ def get_confusion(df_test, classes, k, truth, predictions):
         df_test["predictions_%i" %i] = df_test.apply(lambda x: x["predictions"] - x["truth"],
                                            axis =1).apply(list).str[i].dropna()
 
-    print("compute intersectiosn")
+    print("compute intersections")
     for i in range(k):
         df_test["matches_%i" %i] = df_test.apply(lambda x: x["predictions"] & x["truth"],
                                            axis =1).apply(list).str[i].dropna()
