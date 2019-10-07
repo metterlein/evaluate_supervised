@@ -66,10 +66,6 @@ def get_summary(df_sim_report, confusion, S = None):
     sim_summary = pd.DataFrame(index=["micro avg","macro avg","weighted avg"], 
                            columns=["precision","recall","f1-score","support"])
     sim_summary["support"] = df_sim_report.support.sum()
-    sim_summary.loc["micro avg", "precision"] = pd.Series(np.diag(confusion.dot(S.loc[cps,cps])), 
-                                 index=cps, name="precision").sum()/confusion.sum().sum()
-    sim_summary.loc["micro avg", "recall"] = pd.Series(np.diag(S.loc[cps,cps].dot(confusion)), 
-                                 index=cps, name="recall").sum()/confusion.sum().sum()
 
     sim_summary.loc["macro avg", "precision"] = df_sim_report.precision.mean()
     sim_summary.loc["macro avg", "recall"] = df_sim_report.recall.mean()
