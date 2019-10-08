@@ -33,7 +33,7 @@ def get_confusion(df_test, classes, k, truth, predictions):
     onehots_nomatch_pred = onehots_nomatch_pred.fillna(0)
     onehots_nomatch_pred = ((onehots_nomatch_pred.T/onehots_nomatch_pred.sum(axis = 1))).fillna(0).T
 
-    confusion_nomatch = onehots_nomatch_truth.T.dot(onehots_nomatch_pred)
+    confusion_nomatch = (onehots_nomatch_truth.T.dot(onehots_nomatch_pred)).T
 
     confusion_match = onehots_match.T.dot(onehots_match)
     confusion = confusion_nomatch + np.diag(np.diag(confusion_match))
@@ -54,7 +54,6 @@ def get_report(confusion, S = None):
     f1score = df_sim_report.precision*df_sim_report.recall*2/(df_sim_report.precision+df_sim_report.recall)
     df_sim_report=df_sim_report.join(f1score.to_frame("f1score")).join(support.to_frame("support"))
     return df_sim_report
-#    df_sim_report.index = df_cpids.set_index("id").name[df_sim_report.index]
 
 def get_summary(df_sim_report, confusion, S = None):
     
@@ -63,7 +62,7 @@ def get_summary(df_sim_report, confusion, S = None):
         S = pd.DataFrame(np.eye(confusion.shape[0]), index=cps,
                      columns=cps)
     df_sim_report = df_sim_report[df_sim_report.support>0]
-    sim_summary = pd.DataFrame(index=["micro avg","macro avg","weighted avg"], 
+    sim_summary = pd.DataFrame(index=["macro avg","weighted avg"], 
                            columns=["precision","recall","f1-score","support"])
     sim_summary["support"] = df_sim_report.support.sum()
 
