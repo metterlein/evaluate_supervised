@@ -1,12 +1,24 @@
 import pandas as pd
 import numpy as np
 
-def get_onehot(fields, classes):
-    onehot = pd.Series(index = classes)
-    onehot[fields.dropna()] = 1
+def get_onehot(class_idc, n):
+    onehot = np.zeros(n)
+    onehot[class_idc]=1
     return onehot
 
 def get_confusion(df_test, classes, k, truth, predictions):
+    """
+    Computes confusion matrix which contains at C_ij the number of data points whith ground truth i 
+    and prediction j.
+    Parameters
+    ----------
+    :param df_test: dataframe containing test data
+    :param classes: list of classes
+    :param k: int, number of predicted labels
+    :param truth: list, column name(s) of ground truth
+    :param predictions: list, column name(s) of prediction 
+    :return: returns confusion matrix C
+    """
     df_test["truth"] = df_test[truth].apply(set,axis =1).apply(lambda a: {x for x in a if x==x})
     df_test["predictions"] = df_test[predictions].apply(set, axis=1).apply(lambda a: {x for x in a if x==x})
     print("compute diffecence sets")
@@ -24,11 +36,21 @@ def get_confusion(df_test, classes, k, truth, predictions):
     truth_match = ["matches_%i" %i for i in range(k)]
     truth_nomatch = ["truth_%i" %i for i in range(k)]
     pred_nomatch = ["predictions_%i"%i for i in range(k)]
+    n = len(classes)
+    idx = pd.Series(index=classes, data=range(len(classes)))
 
-    print("compute onehot vectors")
-    onehots_match = df_test.apply(lambda x: get_onehot(x[truth_match], classes), axis=1).fillna(0)
-    onehots_nomatch_truth = df_test.apply(lambda x: get_onehot(x[truth_nomatch], classes), axis=1).fillna(0)
-    onehots_nomatch_pred = df_test.apply(lambda x: get_onehot(x[pred_nomatch], classes), axis=1).fillna(0)
+    print("determine vectors")
+    onehots_match = df_test.apply(
+        lambda x: get_onehot(idx.get(x[truth_match].dropna(),[]),n), axis =1)
+
+    onehots_nomatch_truth =  df_test.apply(
+        lambda x: get_onehot(idx.get(x[truth_nomatch].dropna(), []),n), axis =1)
+    onehots_nomatch_pred = df_test.apply(
+        lambda x: get_onehot(idx.get(x[pred_nomatch].dropna(), []),n), axis =1)
+
+    onehots_match=onehots_match.apply(pd.Series)
+    onehots_nomatch_truth=onehots_nomatch_truth.apply(pd.Series)
+    onehots_nomatch_pred=onehots_nomatch_pred.apply(pd.Series)
 
     onehots_nomatch_pred = onehots_nomatch_pred.fillna(0)
     onehots_nomatch_pred = ((onehots_nomatch_pred.T/onehots_nomatch_pred.sum(axis = 1))).fillna(0).T
@@ -37,9 +59,19 @@ def get_confusion(df_test, classes, k, truth, predictions):
 
     confusion_match = onehots_match.T.dot(onehots_match)
     confusion = confusion_nomatch + np.diag(np.diag(confusion_match))
+    confusion.index = classes
+    confusion.columns = classes
     return confusion
 
 def get_report(confusion, S = None):
+    """
+    Computes classification report including precision, recall, f1-score and support per class.
+    Parameters
+    ----------
+    :param confusion: dataframe, confusion matrix
+    :param S: dataframe, similarity matrix
+    :return: dataframe, classification report per class
+    """
     
     if S is None:
         S = pd.DataFrame(np.eye(confusion.shape[0]), index=confusion.index,
@@ -56,7 +88,16 @@ def get_report(confusion, S = None):
     return df_sim_report
 
 def get_summary(df_sim_report, confusion, S = None):
-    
+    """
+    Computes summary of classification report summary
+    Parameters
+    ----------
+    :param df_sim_report: dataframe classificatin report per class
+    :param confusion: dataframe, confusion matrix
+    :param S: similarity matrix
+    :return: returns macro average and weighted average or precision recall and f1-score
+    """
+
     cps=confusion.index
     if S is None:
         S = pd.DataFrame(np.eye(confusion.shape[0]), index=cps,
