@@ -1,7 +1,7 @@
 
 fasttext==0.9.1
 pandas==0.23.4
-numpy==1.16.2
+numpy==1.22.0
 scipy==1.2.1
 numpydoc==0.8.0
 sklearn==0.0
